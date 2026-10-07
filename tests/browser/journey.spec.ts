@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 test('storm engineer keeps the rescue promise, reloads a save, and completes the archive',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('/');
+  await page.goto('./');
   await expect(page.getByRole('heading',{name:'Become someone impossible.'})).toBeVisible();
   await page.screenshot({path:'qa/screenshots/workshop.png',fullPage:true});
   await page.getByRole('button',{name:'Enter the archive'}).click();
@@ -23,7 +23,7 @@ test('phantom and guardian use their own routes and different endings',async({pa
     {preset:'Phantom envoy',steps:[/Enter between reflections/,/Follow the other reflection/,/Share a little/,/Take your first memory/,/Leave through a forgotten name/],ending:'The city forgets to stop you.'},
     {preset:'Living guardian',steps:[/Grow your own way in/,/Raise a bridge of roots/,/Listen to all their voices/,/Take the book of erasures/,/Let the archive reclaim/],ending:'Something living takes its place.'},
   ]){
-    await page.goto('/');await page.getByRole('button',{name:new RegExp(route.preset)}).click();
+    await page.goto('./');await page.getByRole('button',{name:new RegExp(route.preset)}).click();
     await page.getByRole('button',{name:'Enter the archive'}).click();
     for(const name of route.steps)await page.getByRole('button',{name}).click();
     await expect(page.getByRole('heading',{name:route.ending})).toBeVisible();
@@ -33,7 +33,7 @@ test('phantom and guardian use their own routes and different endings',async({pa
 });
 test('combat supports preview, confirmation, enemy turns, pause, and keyboard map',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('/');await page.getByRole('button',{name:'Enter the archive'}).click();
+  await page.goto('./');await page.getByRole('button',{name:'Enter the archive'}).click();
   await page.getByRole('button',{name:/Face the brass sentries/}).click();
   await expect(page.locator('#battlefield canvas')).toBeVisible();
   const canvas=page.locator('#battlefield canvas');
@@ -62,7 +62,7 @@ test('combat supports preview, confirmation, enemy turns, pause, and keyboard ma
   expect(errors).toEqual([]);
 });
 test('invalid import preserves the current journey; export round-trips through the UI',async({page})=>{
-  await page.goto('/');await page.getByRole('button',{name:'Enter the archive'}).click();
+  await page.goto('./');await page.getByRole('button',{name:'Enter the archive'}).click();
   await page.getByRole('button',{name:/Wear a borrowed authority/}).click();
   await page.getByRole('button',{name:'Ⅱ Pause'}).click();
   const downloadPromise=page.waitForEvent('download');
@@ -80,7 +80,7 @@ test('invalid import preserves the current journey; export round-trips through t
   await expect(page.getByRole('heading',{name:'A river through the stacks.'})).toBeVisible();
 });
 test('phone layout stays within viewport and permits a complete journey',async({page})=>{
-  await page.setViewportSize({width:390,height:844});await page.goto('/');
+  await page.setViewportSize({width:390,height:844});await page.goto('./');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('tab',{name:'Appearance',exact:true}).click();
   await page.getByLabel('Name',{exact:true}).fill('Ash');
