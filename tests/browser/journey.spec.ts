@@ -85,6 +85,9 @@ test('phone layout stays within viewport and permits a complete journey',async({
   await page.getByRole('tab',{name:'Appearance',exact:true}).click();
   await page.getByLabel('Name',{exact:true}).fill('Ash');
   await page.getByLabel('Pronouns',{exact:true}).fill('she / her');
+  await expect(page.getByLabel('Name',{exact:true})).toHaveValue('Ash');
+  await expect(page.getByLabel('Pronouns',{exact:true})).toHaveValue('she / her');
+  await expect(page.locator('.character-name>span')).toContainText('she / her');
   await page.screenshot({path:'qa/screenshots/phone-workshop.png',fullPage:true});
   await page.getByRole('button',{name:'Enter the archive'}).click();
   for(const name of [/Wear a borrowed authority/,/Anchor the broken causeway/,/Share a little/,/Take Mara/,/Invoke the keeper/])await page.getByRole('button',{name}).click();

@@ -232,7 +232,12 @@ app.addEventListener('click',event=>{
 app.addEventListener('input',event=>{
   const input=event.target as HTMLInputElement;
   if(input.id==='seed')seed=input.value;
-  if(input.dataset.field==='name'||input.dataset.field==='pronouns')draft[input.dataset.field]=input.value;
+  if(input.dataset.field==='name'||input.dataset.field==='pronouns'){
+    draft[input.dataset.field]=input.value;
+    const name=document.querySelector('.character-name h2'),identity=document.querySelector('.character-name>span');
+    if(name)name.textContent=draft.name||'Vesper';
+    if(identity)identity.textContent=draft.pronouns+' · '+trait(draft,'history').name;
+  }
 });
 app.addEventListener('change',async event=>{
   const input=event.target as HTMLInputElement;
@@ -245,6 +250,7 @@ app.addEventListener('change',async event=>{
     }catch(error){notice='Could not import: '+(error as Error).message;render()}return;
   }
   if(input.dataset.field){
+    if(input.dataset.field==='name'||input.dataset.field==='pronouns')return;
     draft={...draft,[input.dataset.field]:input.value};render();
   }
 });

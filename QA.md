@@ -22,7 +22,12 @@ the exact source commit. This is not the full RPG or a claim of infinite novelty
 - Publication scan reviewed all 26 staged files and found no credential patterns
   or private local paths. The repository starts with fresh history and includes
   only this game's code, assets, tests, build configuration, and documentation.
-- Public repository and deployed revision verification follow publication.
+- Public repository and GitHub Pages deployment were verified. All five browser
+  checks also passed against the hosted project path. GitHub secret scanning
+  reported no alerts; push protection is enabled.
+- Final mobile screenshot review exposed a text-field refresh issue in the
+  character editor. Identity inputs now update the portrait labels without
+  replacing the focused form; the phone test asserts both values are retained.
 
 ## Acceptance boundaries
 

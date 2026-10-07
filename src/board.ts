@@ -46,7 +46,7 @@ class BattleScene extends Phaser.Scene {
       if(water){g.lineStyle(1,0x8dc7be,.32);g.lineBetween(v.x-21,v.y,v.x+5,v.y+10);g.lineBetween(v.x-2,v.y-8,v.x+20,v.y+3)}
       if(!wall){
         const pv=preview(s,this.owner.action,p);
-        if(pv.valid)diamond(v.x,v.y,this.owner.action==='move'?0x72b9ae:0xcc9c62,.14,this.owner.action==='move'?0x75b7ab:0xd6ae77);
+        if(pv.valid&&!['guard','mend','veil'].includes(this.owner.action))diamond(v.x,v.y,this.owner.action==='move'?0x72b9ae:0xcc9c62,.14,this.owner.action==='move'?0x75b7ab:0xd6ae77);
         const polygon=this.add.polygon(v.x,v.y,[38,0,76,20,38,40,0,20],0xffffff,0).setInteractive(new Phaser.Geom.Polygon([38,0,76,20,38,40,0,20]),Phaser.Geom.Polygon.Contains);
         polygon.on('pointerover',()=>polygon.setFillStyle(0xe7d9b7,.16));
         polygon.on('pointerout',()=>polygon.setFillStyle(0xffffff,0));
