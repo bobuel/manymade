@@ -1,0 +1,14 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+.codex/
+.publication/
+qa/screenshots/

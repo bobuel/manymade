@@ -1,0 +1,27 @@
+{
+  "name": "manymade-archive",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4185 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4185 --strictPort",
+    "test": "tsx --test tests/*.test.ts",
+    "test:browser": "playwright test",
+    "check": "tsc --noEmit",
+    "scan:publication": "node scripts/scan-publication.mjs"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0",
+    "@fontsource/cormorant-garamond": "^5.2.6",
+    "@fontsource/dm-sans": "^5.2.6"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0",
+    "typescript": "^5.8.3",
+    "tsx": "^4.20.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.15.0"
+  }
+}
